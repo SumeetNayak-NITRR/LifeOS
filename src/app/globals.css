@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: #0f0f0f;
+  --color-foreground: #d1d1d1;
+
+  --color-card: #1a1a1a;
+  --color-card-foreground: #d1d1d1;
+
+  --color-popover: #0f0f0f;
+  --color-popover-foreground: #d1d1d1;
+
+  --color-primary: #ffffff;
+  --color-primary-foreground: #000000;
+
+  --color-secondary: #666666;
+  --color-secondary-foreground: #ffffff;
+
+  --color-muted: #666666;
+  --color-muted-foreground: #a1a1a1;
+
+  --color-accent: #ff3e00;
+  --color-accent-foreground: #ffffff;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-input: rgba(255, 255, 255, 0.1);
+  --color-ring: #ff3e00;
+
+  --color-chart-1: #ff3e00;
+  --color-chart-2: #d1d1d1;
+  --color-chart-3: #666666;
+  --color-chart-4: #ffffff;
+  --color-chart-5: #000000;
+
+  --color-sidebar: #0f0f0f;
+  --color-sidebar-foreground: #d1d1d1;
+  --color-sidebar-primary: #ffffff;
+  --color-sidebar-primary-foreground: #000000;
+  --color-sidebar-accent: #1a1a1a;
+  --color-sidebar-accent-foreground: #ffffff;
+  --color-sidebar-border: rgba(255, 255, 255, 0.1);
+  --color-sidebar-ring: #ff3e00;
+
+  --font-display: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+@layer base {
+  :root {
+    --background: #050505;
+    --foreground: #e5e5e5;
+    --card: #0a0a0a;
+    --card-foreground: #e5e5e5;
+    --popover: #050505;
+    --popover-foreground: #e5e5e5;
+    --primary: #ffffff;
+    --primary-foreground: #000000;
+    --secondary: #737373;
+    --secondary-foreground: #ffffff;
+    --muted: #737373;
+    --muted-foreground: #a3a3a3;
+    --accent: #ff3e00;
+    --accent-foreground: #ffffff;
+    --border: rgba(255, 255, 255, 0.12);
+    --input: rgba(255, 255, 255, 0.12);
+    --ring: #ff3e00;
+    --radius: 0.5rem;
+    --sidebar-background: #050505;
+    --sidebar-foreground: #e5e5e5;
+    --sidebar-primary: #ffffff;
+    --sidebar-primary-foreground: #000000;
+    --sidebar-accent: #0a0a0a;
+    --sidebar-accent-foreground: #ffffff;
+    --sidebar-border: rgba(255, 255, 255, 0.12);
+    --sidebar-ring: #ff3e00;
+  }
+
+  /* Light Theme Overrides for Zen Garden Sections */
+  .light-section {
+    --background: #ffffff;
+    --foreground: #000000;
+    --border: rgba(0, 0, 0, 0.1);
+    --primary: #000000;
+    --primary-foreground: #ffffff;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--background);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .font-technical {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100vw;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Cinematic Noise Overlay */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  /* Dialogue Box Styling */
+  .dialogue-bubble {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 55% 90%, 50% 100%, 45% 90%, 0% 90%);
+  }
+
+  /* Interactive String Physics Placeholder */
+  .string-element {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .string-element:hover {
+    transform: scaleY(1.1) skewX(2deg);
+  }
+}
+
+@layer utilities {
+  .text-hero {
+    font-size: clamp(64px, 8vw, 120px);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
+  }
+
+  .text-section {
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 600;
+  }
+
+  .mask-polygon {
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+  }
+
+  .safe-area-pb {
+    padding-bottom: env(safe-area-inset-bottom, 8px);
+  }
+}
